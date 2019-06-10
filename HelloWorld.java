@@ -11,7 +11,7 @@ class HelloWorld{
   
   public static void main(String [] args){
     HelloWorld hw = new HelloWorld();
-    hw.setName("Rahul")
+    hw.setName("Rahul");
     System.out.println("Hello " + hw.getName() + " !!!");
   }
 }  
