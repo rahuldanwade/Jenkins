@@ -1,22 +1,56 @@
-Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent any
-
-    stages {
+  agent any
+  stages {
+    stage('Build') {
+      parallel {
         stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+          steps {
+            echo 'Building..'
+          }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
+
+        stage('run 3') {
+          steps {
+            sh 'echo "In build"'
+          }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+
+      }
     }
+
+    stage('Test') {
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing..'
+          }
+        }
+
+        stage('run 2') {
+          steps {
+            sh 'echo "In Test"'
+          }
+        }
+
+      }
+    }
+
+    stage('Deploy') {
+      parallel {
+        stage('Deploy') {
+          steps {
+            echo 'Deploying....'
+          }
+        }
+
+        stage('run3') {
+          steps {
+            sh 'echo "In Deploy"'
+          }
+        }
+
+      }
+    }
+
+  }
 }
